@@ -51,16 +51,11 @@ class App extends Component {
 }
 
 class Header extends Component {
-  increment = (num) => {
-    store.dispatch({type: "INCREMENT_COUNT", payload: num})
-  };
 
   render() {
     return (
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={()=>this.increment(1)}> + </button>
-        <button onClick={()=>this.increment(3)}> +3 </button>
         <h1 className="App-title">Welcome to React</h1>
       </header>
     );
@@ -68,9 +63,15 @@ class Header extends Component {
 }
 
 class Counter extends Component {
+
   decrement = (num) => {
     store.dispatch({type: "DECREMENT_COUNT", payload: num})
   };
+
+  increment = (num) => {
+    store.dispatch({type: "INCREMENT_COUNT", payload: num})
+  };
+
 
   render() {
     let {count} = store.getState()
@@ -79,6 +80,8 @@ class Counter extends Component {
       <div className="Counter">
       <button onClick={()=>this.decrement(5)}> -5 </button>
       <button onClick={()=>this.decrement(1)}> - </button>
+      <button onClick={()=>this.increment(1)}> + </button>
+      <button onClick={()=>this.increment(3)}> +3 </button>
         <h1>{store.getState().count}</h1>
         <h3>{`The current count is less than ${count + 5 - count % 5}`}</h3>
       </div>
